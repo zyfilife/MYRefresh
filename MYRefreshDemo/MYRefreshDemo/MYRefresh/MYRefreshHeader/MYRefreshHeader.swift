@@ -18,6 +18,8 @@ class MYRefreshHeader: MYRefreshComponent {
         return UserDefaults.standard.object(forKey: self.lastUpdatedTimeKey) as? Date
     }
     
+    var customNormalPullingOffsetY: CGFloat = 0.0
+    
     var insetTopDelta: CGFloat = 0.0
     
     override var state: MYRefreshState {
@@ -27,7 +29,6 @@ class MYRefreshHeader: MYRefreshComponent {
                 if oldValue != .refreshing {
                     return
                 }
-//                assert(self.lastUpdatedTimeKey == nil, "self.lastUpdatedTimeKey == nil")
                 UserDefaults.standard.set(Date(), forKey: self.lastUpdatedTimeKey)
                 UserDefaults.standard.synchronize()
                 UIView.animate(withDuration: kMYRefreshSlowAnimationDuration, animations: { 
@@ -39,8 +40,8 @@ class MYRefreshHeader: MYRefreshComponent {
                     self.pullingPercent = 0.0
                 })
             case .refreshing:
-                UIView.animate(withDuration: kMYRefreshFastAnimationDuration, animations: { 
-                    let top = self.scrollViewOriginalInset.top + self.frame.size.height
+                UIView.animate(withDuration: kMYRefreshSlowAnimationDuration, animations: {
+                    let top = self.scrollViewOriginalInset.top + self.refreshHeaderHeight
                     self.scrollView.contentInset.top = top
                     self.scrollView.contentOffset.y = -top
                 }, completion: { (finished) in
@@ -52,8 +53,8 @@ class MYRefreshHeader: MYRefreshComponent {
         }
     }
     
-    init(frame: CGRect, withBlock refreshingBlock: @escaping MYRefreshComponentRefreshingBlock) {
-        super.init(frame: frame)
+    init(withBlock refreshingBlock: @escaping MYRefreshComponentRefreshingBlock) {
+        super.init(frame: CGRect.zero)
         self.refreshingBlock = refreshingBlock
     }
     
@@ -63,15 +64,13 @@ class MYRefreshHeader: MYRefreshComponent {
     
     override func prepare() {
         super.prepare()
-        
+        self.refreshHeaderHeight = 36
         self.lastUpdatedTimeKey = kMYRefreshHeaderLastUpdatedTimeKey
-        
-        self.frame.size.height = kMYRefreshHeaderHeight
     }
     
     override func placeSubviews() {
         super.placeSubviews()
-        self.frame.origin.y = -self.frame.size.height - self.ignoredScrollViewContentInsetTop
+        self.frame.origin.y = -self.frame.size.height - self.scrollViewOriginalInset.top - self.ignoredScrollViewContentInsetTop
     }
     
     override func scrollViewContentOffsetDidChange(change: [NSKeyValueChangeKey : Any]?) {
@@ -95,24 +94,22 @@ class MYRefreshHeader: MYRefreshComponent {
             self.insetTopDelta = scrollViewOriginalInset.top - insetTop
             return
         }
-        
         self.scrollViewOriginalInset = self.scrollView?.contentInset
         
         let offsetY = scrollView.contentOffset.y
         let happenOffsetY = -scrollViewOriginalInset.top
-        
         if offsetY > happenOffsetY {
             return
         }
         
         let normalPullingOffsetY = happenOffsetY - self.frame.size.height
-        let pullingPercent = (happenOffsetY - offsetY) / self.frame.size.height
-        
+        let customPullingOffsetY = self.customNormalPullingOffsetY < normalPullingOffsetY ? self.customNormalPullingOffsetY: normalPullingOffsetY
+        let pullingPercent =  happenOffsetY - offsetY / self.frame.size.height
         if scrollView.isDragging {
             self.pullingPercent = pullingPercent
-            if self.state == .idle && offsetY < normalPullingOffsetY {
+            if self.state == .idle && offsetY < customPullingOffsetY {
                 self.state = .pulling
-            }else if self.state == .pulling && offsetY >= normalPullingOffsetY {
+            }else if self.state == .pulling && offsetY >= customPullingOffsetY {
                 self.state = .idle
             }
         }else if self.state == .pulling {

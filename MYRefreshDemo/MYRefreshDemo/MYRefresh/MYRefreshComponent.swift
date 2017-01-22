@@ -20,6 +20,17 @@ typealias MYRefreshComponentRefreshingBlock = ()->Void
 
 class MYRefreshComponent: UIView {
     
+    var refreshHeaderHeight:CGFloat{
+        get {
+            return self.frame.size.height
+        }
+        set {
+            self.frame.size.height = newValue
+        }
+    }
+    
+    var refreshFooterHeight:CGFloat = 44.0
+    
     var state = MYRefreshState.idle
     
     var scrollView: UIScrollView!
@@ -104,7 +115,6 @@ class MYRefreshComponent: UIView {
         self.scrollView.alwaysBounceVertical = true
         
         self.scrollViewOriginalInset = self.scrollView.contentInset
-        
         self.addObservers()
     }
     
@@ -204,12 +214,5 @@ extension UIImage {
     class func my_image(named: String) -> UIImage? {
         return UIImage(named: "MYRefresh.bundle/\(named)")
         
-    }
-}
-
-extension DispatchTime {
-    
-    init(seconds: UInt64) {
-        self = DispatchTime(uptimeNanoseconds: seconds*NSEC_PER_SEC)
     }
 }

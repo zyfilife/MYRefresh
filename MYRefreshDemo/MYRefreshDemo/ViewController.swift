@@ -10,19 +10,57 @@ import UIKit
 
 class ViewController: UITableViewController {
     
+    var type: MYRefreshHeaderType = .state
+    
     var numberOfRows = 5
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let header = MYRefreshNormalHeader(frame: CGRect.zero, withBlock: {
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3, execute: { 
-                self.numberOfRows = 5
-                self.tableView.reloadData()
-                self.tableView.my_header?.endRefreshing()
+        var header: MYRefreshHeader!
+        
+        switch self.type {
+        case .state:
+            header = MYRefreshHeaderWithState(withBlock: {
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3, execute: {
+                    self.numberOfRows = 5
+                    self.tableView.reloadData()
+                    self.tableView.my_header?.endRefreshing()
+                })
             })
-        })
+        case .indicator:
+            header = MYRefreshHeaderWithIndicator(withBlock: {
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3, execute: {
+                    self.numberOfRows = 5
+                    self.tableView.reloadData()
+                    self.tableView.my_header?.endRefreshing()
+                })
+            })
+        case .arrowView:
+            header = MYRefreshHeaderWithArrowView(withBlock: {
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3, execute: {
+                    self.numberOfRows = 5
+                    self.tableView.reloadData()
+                    self.tableView.my_header?.endRefreshing()
+                })
+            })
+        default:
+            header = MYRefreshHeaderWithLastTime(withBlock: {
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3, execute: {
+                    self.numberOfRows = 5
+                    self.tableView.reloadData()
+                    self.tableView.my_header?.endRefreshing()
+                })
+            })
+        }
+        
+        self.title = "\(header.classForCoder)"
+        
         self.tableView.my_header = header
+        
+        self.tableView.tableFooterView = UIView(frame: CGRect.zero)
+        
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -40,7 +78,5 @@ class ViewController: UITableViewController {
         cell.textLabel?.text = "这是第\(indexPath.row+1)个cell"
         return cell
     }
-
-
 }
 

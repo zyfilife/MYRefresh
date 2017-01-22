@@ -1,5 +1,5 @@
 //
-//  MYRefreshStateHeader.swift
+//  MYRefreshHeaderWithLastTime.swift
 //  SmartCloud
 //
 //  Created by 朱益锋 on 2017/1/20.
@@ -8,20 +8,12 @@
 
 import UIKit
 
-class MYRefreshStateHeader: MYRefreshHeader {
+class MYRefreshHeaderWithLastTime: MYRefreshHeaderWithArrowView {
     
     var lastUpdatedTimeTextActionHandler: ((_ lastUpdatedTime: Date?) -> String?)?
 
     lazy var lastUpdatedTimeLabel: UILabel = {
         return UILabel.my_refreshLabel()
-    }()
-    
-    lazy var stateLabel: UILabel = {
-        return UILabel.my_refreshLabel()
-    }()
-    
-    lazy var stateTitels: [MYRefreshState: String] = {
-        return [MYRefreshState: String]()
     }()
     
     var currentCalendar: Calendar {
@@ -30,9 +22,6 @@ class MYRefreshStateHeader: MYRefreshHeader {
     
     override var state: MYRefreshState {
         didSet {
-            
-            self.stateLabel.text = self.stateTitels[self.state]
-            
             let key = self.lastUpdatedTimeKey
             self.lastUpdatedTimeKey = key
         }
@@ -72,27 +61,10 @@ class MYRefreshStateHeader: MYRefreshHeader {
         }
     }
     
-    override init(frame: CGRect, withBlock refreshingBlock: @escaping MYRefreshComponentRefreshingBlock) {
-        super.init(frame: frame, withBlock: refreshingBlock)
-        self.refreshingBlock = refreshingBlock
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func setTitle(title: String, forState state: MYRefreshState) {
-        self.stateTitels[state] = title
-        self.stateLabel.text = self.stateTitels[self.state]
-    }
-    
     override func prepare() {
         super.prepare()
+        self.refreshHeaderHeight = 54
         self.addSubview(self.lastUpdatedTimeLabel)
-        self.addSubview(self.stateLabel)
-        self.setTitle(title: kMYRefreshHeaderIdleText, forState: MYRefreshState.idle)
-        self.setTitle(title: kMYRefreshHeaderPullingText, forState: MYRefreshState.pulling)
-        self.setTitle(title: kMYRefreshHeaderRefreshingText, forState: MYRefreshState.refreshing)
     }
     
     override func placeSubviews() {
@@ -120,5 +92,8 @@ class MYRefreshStateHeader: MYRefreshHeader {
                 self.lastUpdatedTimeLabel.frame.size.height = self.frame.size.height - self.lastUpdatedTimeLabel.frame.origin.y
             }
         }
+        
+        self.loadingView.center.x -= 20
+        self.arrowView.center.x -= 20
     }
 }

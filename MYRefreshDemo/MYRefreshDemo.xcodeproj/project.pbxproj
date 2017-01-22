@@ -15,10 +15,13 @@
 		401C58C31E344A22008D5822 /* MYRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 401C58BA1E344A22008D5822 /* MYRefresh.bundle */; };
 		401C58C41E344A22008D5822 /* MYRefreshComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401C58BB1E344A22008D5822 /* MYRefreshComponent.swift */; };
 		401C58C51E344A22008D5822 /* MYRefreshHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401C58BE1E344A22008D5822 /* MYRefreshHeader.swift */; };
-		401C58C61E344A22008D5822 /* MYRefreshNormalHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401C58BF1E344A22008D5822 /* MYRefreshNormalHeader.swift */; };
-		401C58C71E344A22008D5822 /* MYRefreshStateHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401C58C01E344A22008D5822 /* MYRefreshStateHeader.swift */; };
+		401C58C61E344A22008D5822 /* MYRefreshHeaderWithArrowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401C58BF1E344A22008D5822 /* MYRefreshHeaderWithArrowView.swift */; };
+		401C58C71E344A22008D5822 /* MYRefreshHeaderWithLastTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401C58C01E344A22008D5822 /* MYRefreshHeaderWithLastTime.swift */; };
 		401C58C81E344A22008D5822 /* MYRefreshStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401C58C11E344A22008D5822 /* MYRefreshStyle.swift */; };
 		401C58C91E344A22008D5822 /* UIScrollView+MYRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401C58C21E344A22008D5822 /* UIScrollView+MYRefresh.swift */; };
+		409D27571E3560A500529221 /* MYRefreshHeaderWithState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409D27561E3560A500529221 /* MYRefreshHeaderWithState.swift */; };
+		409D27591E3563E300529221 /* MYRefreshHeaderWithIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409D27581E3563E300529221 /* MYRefreshHeaderWithIndicator.swift */; };
+		409D275B1E356A6100529221 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409D275A1E356A6100529221 /* TableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,10 +35,13 @@
 		401C58BA1E344A22008D5822 /* MYRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MYRefresh.bundle; sourceTree = "<group>"; };
 		401C58BB1E344A22008D5822 /* MYRefreshComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MYRefreshComponent.swift; sourceTree = "<group>"; };
 		401C58BE1E344A22008D5822 /* MYRefreshHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MYRefreshHeader.swift; sourceTree = "<group>"; };
-		401C58BF1E344A22008D5822 /* MYRefreshNormalHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MYRefreshNormalHeader.swift; sourceTree = "<group>"; };
-		401C58C01E344A22008D5822 /* MYRefreshStateHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MYRefreshStateHeader.swift; sourceTree = "<group>"; };
+		401C58BF1E344A22008D5822 /* MYRefreshHeaderWithArrowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MYRefreshHeaderWithArrowView.swift; sourceTree = "<group>"; };
+		401C58C01E344A22008D5822 /* MYRefreshHeaderWithLastTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MYRefreshHeaderWithLastTime.swift; sourceTree = "<group>"; };
 		401C58C11E344A22008D5822 /* MYRefreshStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MYRefreshStyle.swift; sourceTree = "<group>"; };
 		401C58C21E344A22008D5822 /* UIScrollView+MYRefresh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+MYRefresh.swift"; sourceTree = "<group>"; };
+		409D27561E3560A500529221 /* MYRefreshHeaderWithState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MYRefreshHeaderWithState.swift; sourceTree = "<group>"; };
+		409D27581E3563E300529221 /* MYRefreshHeaderWithIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MYRefreshHeaderWithIndicator.swift; sourceTree = "<group>"; };
+		409D275A1E356A6100529221 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				401C58961E344851008D5822 /* AppDelegate.swift */,
+				409D275A1E356A6100529221 /* TableViewController.swift */,
 				401C58981E344851008D5822 /* ViewController.swift */,
 				401C589A1E344851008D5822 /* Main.storyboard */,
 				401C589D1E344851008D5822 /* Assets.xcassets */,
@@ -82,12 +89,12 @@
 		401C58B91E344A22008D5822 /* MYRefresh */ = {
 			isa = PBXGroup;
 			children = (
-				401C58BA1E344A22008D5822 /* MYRefresh.bundle */,
+				401C58C11E344A22008D5822 /* MYRefreshStyle.swift */,
 				401C58BB1E344A22008D5822 /* MYRefreshComponent.swift */,
+				401C58C21E344A22008D5822 /* UIScrollView+MYRefresh.swift */,
 				401C58BC1E344A22008D5822 /* MYRefreshFooter */,
 				401C58BD1E344A22008D5822 /* MYRefreshHeader */,
-				401C58C11E344A22008D5822 /* MYRefreshStyle.swift */,
-				401C58C21E344A22008D5822 /* UIScrollView+MYRefresh.swift */,
+				401C58BA1E344A22008D5822 /* MYRefresh.bundle */,
 			);
 			path = MYRefresh;
 			sourceTree = "<group>";
@@ -103,8 +110,10 @@
 			isa = PBXGroup;
 			children = (
 				401C58BE1E344A22008D5822 /* MYRefreshHeader.swift */,
-				401C58BF1E344A22008D5822 /* MYRefreshNormalHeader.swift */,
-				401C58C01E344A22008D5822 /* MYRefreshStateHeader.swift */,
+				409D27561E3560A500529221 /* MYRefreshHeaderWithState.swift */,
+				409D27581E3563E300529221 /* MYRefreshHeaderWithIndicator.swift */,
+				401C58BF1E344A22008D5822 /* MYRefreshHeaderWithArrowView.swift */,
+				401C58C01E344A22008D5822 /* MYRefreshHeaderWithLastTime.swift */,
 			);
 			path = MYRefreshHeader;
 			sourceTree = "<group>";
@@ -185,10 +194,13 @@
 			files = (
 				401C58991E344851008D5822 /* ViewController.swift in Sources */,
 				401C58971E344851008D5822 /* AppDelegate.swift in Sources */,
-				401C58C71E344A22008D5822 /* MYRefreshStateHeader.swift in Sources */,
+				409D27571E3560A500529221 /* MYRefreshHeaderWithState.swift in Sources */,
+				401C58C71E344A22008D5822 /* MYRefreshHeaderWithLastTime.swift in Sources */,
+				409D27591E3563E300529221 /* MYRefreshHeaderWithIndicator.swift in Sources */,
 				401C58C51E344A22008D5822 /* MYRefreshHeader.swift in Sources */,
+				409D275B1E356A6100529221 /* TableViewController.swift in Sources */,
 				401C58C41E344A22008D5822 /* MYRefreshComponent.swift in Sources */,
-				401C58C61E344A22008D5822 /* MYRefreshNormalHeader.swift in Sources */,
+				401C58C61E344A22008D5822 /* MYRefreshHeaderWithArrowView.swift in Sources */,
 				401C58C81E344A22008D5822 /* MYRefreshStyle.swift in Sources */,
 				401C58C91E344A22008D5822 /* UIScrollView+MYRefresh.swift in Sources */,
 			);
@@ -356,6 +368,7 @@
 				401C58A71E344851008D5822 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

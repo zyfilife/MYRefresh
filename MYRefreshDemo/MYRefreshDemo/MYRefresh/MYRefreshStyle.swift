@@ -10,8 +10,7 @@ import UIKit
 let KMYRefreshLabelTextColor = UIColor(red: 90/255, green: 90/255, blue: 90/255, alpha: 1)
 let kMYRefreshLabelFont = UIFont.boldSystemFont(ofSize: 14)
 
-let kMYRefreshHeaderHeight:CGFloat = 54.0
-let kMYRefreshFooterHeight:CGFloat = 44.0
+
 let kMYRefreshFastAnimationDuration = 0.25
 let kMYRefreshSlowAnimationDuration = 0.4
 
