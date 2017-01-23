@@ -22,6 +22,7 @@ extension NSObject {
 extension UIScrollView {
     
     static var kMYRefreshHeaderKey:Character = "0"
+    static var kMYRefreshFooterKey:Character = "0"
     
     var my_header: MYRefreshHeader? {
         get {
@@ -35,6 +36,22 @@ extension UIScrollView {
                 self.willChangeValue(forKey: "my_header")
                 objc_setAssociatedObject(self, &UIScrollView.kMYRefreshHeaderKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_ASSIGN)
                 self.didChangeValue(forKey: "my_header")
+            }
+        }
+    }
+    
+    var my_footer: MYRefreshFooter? {
+        get {
+            return objc_getAssociatedObject(self, &UIScrollView.kMYRefreshFooterKey) as? MYRefreshFooter
+        }
+        set {
+            if self.my_footer != newValue {
+                self.my_footer?.removeFromSuperview()
+                self.insertSubview(newValue!, at: 0)
+                
+                self.willChangeValue(forKey: "my_footer")
+                objc_setAssociatedObject(self, &UIScrollView.kMYRefreshFooterKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_ASSIGN)
+                self.didChangeValue(forKey: "my_footer")
             }
         }
     }

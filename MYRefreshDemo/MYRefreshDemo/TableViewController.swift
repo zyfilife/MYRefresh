@@ -27,16 +27,26 @@ class TableViewController: UITableViewController {
 
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch indexPath.row {
-        case 0:
-            self.type = .state
-        case 1:
-            self.type = .indicator
-        case 2:
-            self.type = .arrowView
-        default:
-            self.type = .lastTime
+        if indexPath.section == 0 {
+            switch indexPath.row {
+            case 0:
+                self.type = .state
+            case 1:
+                self.type = .indicator
+            case 2:
+                self.type = .arrowView
+            default:
+                self.type = .lastTime
+            }
+        }else {
+            switch indexPath.row {
+            case 0:
+                self.type = .state
+            default:
+                self.type = .indicator
+            }
         }
+        
         self.performSegue(withIdentifier: "segueTableToTable", sender: self.type)
     }
     

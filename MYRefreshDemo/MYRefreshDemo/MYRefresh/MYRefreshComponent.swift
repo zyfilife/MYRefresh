@@ -17,6 +17,8 @@ enum MYRefreshState {
 }
 
 typealias MYRefreshComponentRefreshingBlock = ()->Void
+typealias MYRefreshComponentBeginRefreshingCompletionBlock = ()->Void
+typealias MYRefreshComponentEndRefreshingCompletionBlock = ()->Void
 
 class MYRefreshComponent: UIView {
     
@@ -29,7 +31,14 @@ class MYRefreshComponent: UIView {
         }
     }
     
-    var refreshFooterHeight:CGFloat = 44.0
+    var refreshFooterHeight:CGFloat {
+        get {
+            return self.frame.size.height
+        }
+        set {
+            self.frame.size.height = newValue
+        }
+    }
     
     var state = MYRefreshState.idle
     
@@ -40,6 +49,10 @@ class MYRefreshComponent: UIView {
     var pan: UIPanGestureRecognizer?
     
     var refreshingBlock: MYRefreshComponentRefreshingBlock?
+    
+    var beginRefreshingCompletionBlock: MYRefreshComponentBeginRefreshingCompletionBlock?
+    
+    var endRefreshingCompletionBlock: MYRefreshComponentEndRefreshingCompletionBlock?
     
     var pullingPercent: CGFloat = 0.0 {
         didSet {
@@ -207,6 +220,13 @@ extension UILabel {
         label.textAlignment = .center
         label.backgroundColor = .clear
         return label
+    }
+    
+    func textWidth()-> CGFloat {
+        guard let text = self.text else {
+            return 0.0
+        }
+        return text.size(attributes: [NSFontAttributeName: self.font]).width
     }
 }
 

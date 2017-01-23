@@ -22,6 +22,10 @@
 		409D27571E3560A500529221 /* MYRefreshHeaderWithState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409D27561E3560A500529221 /* MYRefreshHeaderWithState.swift */; };
 		409D27591E3563E300529221 /* MYRefreshHeaderWithIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409D27581E3563E300529221 /* MYRefreshHeaderWithIndicator.swift */; };
 		409D275B1E356A6100529221 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409D275A1E356A6100529221 /* TableViewController.swift */; };
+		40E351611E3596770099A47C /* MYRefreshFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E351601E3596770099A47C /* MYRefreshFooter.swift */; };
+		40E351631E359A1C0099A47C /* MYRefreshFooterWithAuto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E351621E359A1C0099A47C /* MYRefreshFooterWithAuto.swift */; };
+		40E351651E35A6740099A47C /* MYRefreshFooterWithState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E351641E35A6740099A47C /* MYRefreshFooterWithState.swift */; };
+		40E351671E35AC080099A47C /* MYRefreshFooterWithIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E351661E35AC080099A47C /* MYRefreshFooterWithIndicator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +46,10 @@
 		409D27561E3560A500529221 /* MYRefreshHeaderWithState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MYRefreshHeaderWithState.swift; sourceTree = "<group>"; };
 		409D27581E3563E300529221 /* MYRefreshHeaderWithIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MYRefreshHeaderWithIndicator.swift; sourceTree = "<group>"; };
 		409D275A1E356A6100529221 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		40E351601E3596770099A47C /* MYRefreshFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MYRefreshFooter.swift; sourceTree = "<group>"; };
+		40E351621E359A1C0099A47C /* MYRefreshFooterWithAuto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MYRefreshFooterWithAuto.swift; sourceTree = "<group>"; };
+		40E351641E35A6740099A47C /* MYRefreshFooterWithState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MYRefreshFooterWithState.swift; sourceTree = "<group>"; };
+		40E351661E35AC080099A47C /* MYRefreshFooterWithIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MYRefreshFooterWithIndicator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +110,10 @@
 		401C58BC1E344A22008D5822 /* MYRefreshFooter */ = {
 			isa = PBXGroup;
 			children = (
+				40E351601E3596770099A47C /* MYRefreshFooter.swift */,
+				40E351621E359A1C0099A47C /* MYRefreshFooterWithAuto.swift */,
+				40E351641E35A6740099A47C /* MYRefreshFooterWithState.swift */,
+				40E351661E35AC080099A47C /* MYRefreshFooterWithIndicator.swift */,
 			);
 			path = MYRefreshFooter;
 			sourceTree = "<group>";
@@ -192,10 +204,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40E351651E35A6740099A47C /* MYRefreshFooterWithState.swift in Sources */,
+				40E351611E3596770099A47C /* MYRefreshFooter.swift in Sources */,
 				401C58991E344851008D5822 /* ViewController.swift in Sources */,
 				401C58971E344851008D5822 /* AppDelegate.swift in Sources */,
 				409D27571E3560A500529221 /* MYRefreshHeaderWithState.swift in Sources */,
+				40E351671E35AC080099A47C /* MYRefreshFooterWithIndicator.swift in Sources */,
 				401C58C71E344A22008D5822 /* MYRefreshHeaderWithLastTime.swift in Sources */,
+				40E351631E359A1C0099A47C /* MYRefreshFooterWithAuto.swift in Sources */,
 				409D27591E3563E300529221 /* MYRefreshHeaderWithIndicator.swift in Sources */,
 				401C58C51E344A22008D5822 /* MYRefreshHeader.swift in Sources */,
 				409D275B1E356A6100529221 /* TableViewController.swift in Sources */,

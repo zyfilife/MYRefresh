@@ -19,13 +19,22 @@ class ViewController: UITableViewController {
         
         var header: MYRefreshHeader!
         
+        var footer: MYRefreshFooter!
+        
         switch self.type {
         case .state:
             header = MYRefreshHeaderWithState(withBlock: {
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3, execute: {
                     self.numberOfRows = 5
                     self.tableView.reloadData()
-                    self.tableView.my_header?.endRefreshing()
+                    self.endRefreshing()
+                })
+            })
+            footer = MYRefreshFooterWithState(withBlock: { 
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3, execute: {
+                    self.numberOfRows += 3
+                    self.tableView.reloadData()
+                    self.endRefreshing()
                 })
             })
         case .indicator:
@@ -33,7 +42,14 @@ class ViewController: UITableViewController {
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3, execute: {
                     self.numberOfRows = 5
                     self.tableView.reloadData()
-                    self.tableView.my_header?.endRefreshing()
+                    self.endRefreshing()
+                })
+            })
+            footer = MYRefreshFooterWithIndicator(withBlock: {
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3, execute: {
+                    self.numberOfRows += 0
+                    self.tableView.reloadData()
+                    self.endRefreshing(showNoDataLabel: true)
                 })
             })
         case .arrowView:
@@ -41,7 +57,14 @@ class ViewController: UITableViewController {
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3, execute: {
                     self.numberOfRows = 5
                     self.tableView.reloadData()
-                    self.tableView.my_header?.endRefreshing()
+                    self.endRefreshing()
+                })
+            })
+            footer = MYRefreshFooterWithIndicator(withBlock: {
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3, execute: {
+                    self.numberOfRows += 0
+                    self.tableView.reloadData()
+                    self.endRefreshing(showNoDataLabel: true)
                 })
             })
         default:
@@ -49,7 +72,14 @@ class ViewController: UITableViewController {
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3, execute: {
                     self.numberOfRows = 5
                     self.tableView.reloadData()
-                    self.tableView.my_header?.endRefreshing()
+                    self.endRefreshing()
+                })
+            })
+            footer = MYRefreshFooterWithIndicator(withBlock: {
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3, execute: {
+                    self.numberOfRows += 0
+                    self.tableView.reloadData()
+                    self.endRefreshing(showNoDataLabel: true)
                 })
             })
         }
@@ -60,13 +90,22 @@ class ViewController: UITableViewController {
         
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
         
+        self.tableView.my_footer = footer
         
-        // Do any additional setup after loading the view, typically from a nib.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func endRefreshing(showNoDataLabel: Bool=false) {
+        if showNoDataLabel {
+            self.tableView.my_footer?.endRefreshingWithNoMoreData()
+        }else {
+            self.tableView.my_footer?.endRefreshing()
+        }
+        self.tableView.my_header?.endRefreshing()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -75,7 +114,7 @@ class ViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "normalCell", for: indexPath)
-        cell.textLabel?.text = "这是第\(indexPath.row+1)个cell"
+        cell.textLabel?.text = "第\(indexPath.row+1)只🐸"
         return cell
     }
 }
