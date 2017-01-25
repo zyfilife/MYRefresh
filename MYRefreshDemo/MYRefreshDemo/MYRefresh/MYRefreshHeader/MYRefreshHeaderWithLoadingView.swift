@@ -36,7 +36,7 @@ class MYRefreshHeaderWithLoadingView: MYRefreshHeaderWithState {
     
     override func placeSubviews() {
         super.placeSubviews()
-        self.loadingView.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
+        self.loadingView.sizeToFit()
         var loadingCenterX = self.frame.size.width/2
         if !self.stateLabel.isHidden {
             loadingCenterX -= 80

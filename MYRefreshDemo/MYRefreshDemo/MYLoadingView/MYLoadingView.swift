@@ -16,41 +16,41 @@ class MYLoadingView: UIView {
     
     var isAnimating = false
     
-    var anglePer:CGFloat = 0.0 {
-        didSet {
-            self.anglePer = self.anglePer <= 1.0 && self.anglePer >= 0.0 ? self.anglePer: (self.anglePer >= 1.0 ? 1.0: (self.anglePer <= 0.0 ? 0.0: self.anglePer))
-            self.setNeedsDisplay()
-        }
-    }
+    var radius: CGFloat!
     
-    init(frame: CGRect = CGRect.zero, lineWidth: CGFloat=1.5, lineColor: UIColor=UIColor.white) {
-        super.init(frame: frame)
-        self.backgroundColor = .clear
-        self.isUserInteractionEnabled = false
-        self.lineWidth = lineWidth
-        self.lineColor = lineColor
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func addLayerWithRing(progress: CGFloat) {
-        
-        let path = UIBezierPath(arcCenter: CGPoint(x: self.bounds.width/2, y: self.bounds.height/2), radius: self.bounds.width/2-self.lineWidth, startAngle: self.toAngle(angle: 120), endAngle: self.toAngle(angle: 120)+self.toAngle(angle: 330*self.anglePer), clockwise: true)
+    lazy var ringLayer: CAShapeLayer = {
+        let path = UIBezierPath(arcCenter: CGPoint(x: (self.radius+self.lineWidth), y: (self.radius+self.lineWidth)), radius: self.radius, startAngle: self.toAngle(angle: 120), endAngle: self.toAngle(angle: 120)+self.toAngle(angle: 330), clockwise: true)
         let shapeLayer = CAShapeLayer()
         shapeLayer.contentsScale = UIScreen.main.scale
-        shapeLayer.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: self.bounds.size)
+        shapeLayer.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: (self.radius+self.lineWidth)*2, height: (self.radius+self.lineWidth)*2))
         shapeLayer.lineJoin = kCALineJoinBevel
         shapeLayer.fillColor = UIColor.clear.cgColor
         shapeLayer.path = path.cgPath
         shapeLayer.lineWidth = self.lineWidth
         shapeLayer.strokeColor = self.lineColor.cgColor
         shapeLayer.lineCap = kCALineCapRound
-        shapeLayer.strokeStart = 0
-        shapeLayer.strokeEnd = 1
-        self.layer.addSublayer(shapeLayer)
-        
+        return shapeLayer
+    }()
+    
+    var anglePer:CGFloat = 0.0 {
+        didSet {
+            self.anglePer = self.anglePer <= 1.0 && self.anglePer >= 0.0 ? self.anglePer: (self.anglePer >= 1.0 ? 1.0: (self.anglePer <= 0.0 ? 0.0: self.anglePer))
+            self.ringLayer.strokeEnd = self.anglePer
+        }
+    }
+    
+    init(radius: CGFloat = 8, lineWidth: CGFloat=1.5, lineColor: UIColor=UIColor.white) {
+        super.init(frame: CGRect.zero)
+        self.backgroundColor = .clear
+        self.isUserInteractionEnabled = false
+        self.lineWidth = lineWidth
+        self.lineColor = lineColor
+        self.radius = radius
+        self.layer.addSublayer(self.ringLayer)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     func startAnimating() {
@@ -81,18 +81,8 @@ class MYLoadingView: UIView {
         self.layer.removeAllAnimations()
     }
     
-    
-    
-    override func draw(_ rect: CGRect) {
-        guard let context = UIGraphicsGetCurrentContext() else {
-            return
-        }
-        context.setLineWidth(self.lineWidth)
-        context.setStrokeColor(self.lineColor.cgColor)
-        context.setLineCap(CGLineCap.round)
-        context.setLineJoin(CGLineJoin.bevel)
-        context.addArc(center: CGPoint(x: self.bounds.width/2, y: self.bounds.height/2), radius: self.bounds.width/2-self.lineWidth, startAngle: self.toAngle(angle: 120), endAngle: self.toAngle(angle: 120)+self.toAngle(angle: 330*self.anglePer), clockwise: false)
-        context.strokePath()
+    override func sizeThatFits(_ size: CGSize) -> CGSize {
+        return CGSize(width: (self.radius+self.lineWidth)*2, height: (self.radius+self.lineWidth)*2)
     }
     
     fileprivate func toAngle(angle: CGFloat) -> CGFloat {
