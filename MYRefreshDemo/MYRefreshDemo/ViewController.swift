@@ -67,7 +67,7 @@ class ViewController: UITableViewController {
                     self.endRefreshing(showNoDataLabel: true)
                 })
             })
-        default:
+        case .lastTime:
             header = MYRefreshHeaderWithLastTime(withBlock: {
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3, execute: {
                     self.numberOfRows = 5
@@ -80,6 +80,14 @@ class ViewController: UITableViewController {
                     self.numberOfRows += 0
                     self.tableView.reloadData()
                     self.endRefreshing(showNoDataLabel: true)
+                })
+            })
+        case .loadingView:
+            header = MYRefreshHeaderWithLoadingView(withBlock: { 
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3, execute: {
+                    self.numberOfRows = 5
+                    self.tableView.reloadData()
+                    self.endRefreshing()
                 })
             })
         }

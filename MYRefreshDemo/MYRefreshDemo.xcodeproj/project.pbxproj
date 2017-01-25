@@ -19,6 +19,8 @@
 		401C58C71E344A22008D5822 /* MYRefreshHeaderWithLastTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401C58C01E344A22008D5822 /* MYRefreshHeaderWithLastTime.swift */; };
 		401C58C81E344A22008D5822 /* MYRefreshStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401C58C11E344A22008D5822 /* MYRefreshStyle.swift */; };
 		401C58C91E344A22008D5822 /* UIScrollView+MYRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401C58C21E344A22008D5822 /* UIScrollView+MYRefresh.swift */; };
+		40277C621E38FC21004EC54A /* MYLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40277C611E38FC21004EC54A /* MYLoadingView.swift */; };
+		40277C641E38FCFC004EC54A /* MYRefreshHeaderWithLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40277C631E38FCFC004EC54A /* MYRefreshHeaderWithLoadingView.swift */; };
 		409D27571E3560A500529221 /* MYRefreshHeaderWithState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409D27561E3560A500529221 /* MYRefreshHeaderWithState.swift */; };
 		409D27591E3563E300529221 /* MYRefreshHeaderWithIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409D27581E3563E300529221 /* MYRefreshHeaderWithIndicator.swift */; };
 		409D275B1E356A6100529221 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409D275A1E356A6100529221 /* TableViewController.swift */; };
@@ -43,6 +45,8 @@
 		401C58C01E344A22008D5822 /* MYRefreshHeaderWithLastTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MYRefreshHeaderWithLastTime.swift; sourceTree = "<group>"; };
 		401C58C11E344A22008D5822 /* MYRefreshStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MYRefreshStyle.swift; sourceTree = "<group>"; };
 		401C58C21E344A22008D5822 /* UIScrollView+MYRefresh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+MYRefresh.swift"; sourceTree = "<group>"; };
+		40277C611E38FC21004EC54A /* MYLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MYLoadingView.swift; sourceTree = "<group>"; };
+		40277C631E38FCFC004EC54A /* MYRefreshHeaderWithLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MYRefreshHeaderWithLoadingView.swift; sourceTree = "<group>"; };
 		409D27561E3560A500529221 /* MYRefreshHeaderWithState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MYRefreshHeaderWithState.swift; sourceTree = "<group>"; };
 		409D27581E3563E300529221 /* MYRefreshHeaderWithIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MYRefreshHeaderWithIndicator.swift; sourceTree = "<group>"; };
 		409D275A1E356A6100529221 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
@@ -89,6 +93,7 @@
 				401C589D1E344851008D5822 /* Assets.xcassets */,
 				401C589F1E344851008D5822 /* LaunchScreen.storyboard */,
 				401C58A21E344851008D5822 /* Info.plist */,
+				40277C601E38FC21004EC54A /* MYLoadingView */,
 				401C58B91E344A22008D5822 /* MYRefresh */,
 			);
 			path = MYRefreshDemo;
@@ -126,8 +131,17 @@
 				409D27581E3563E300529221 /* MYRefreshHeaderWithIndicator.swift */,
 				401C58BF1E344A22008D5822 /* MYRefreshHeaderWithArrowView.swift */,
 				401C58C01E344A22008D5822 /* MYRefreshHeaderWithLastTime.swift */,
+				40277C631E38FCFC004EC54A /* MYRefreshHeaderWithLoadingView.swift */,
 			);
 			path = MYRefreshHeader;
+			sourceTree = "<group>";
+		};
+		40277C601E38FC21004EC54A /* MYLoadingView */ = {
+			isa = PBXGroup;
+			children = (
+				40277C611E38FC21004EC54A /* MYLoadingView.swift */,
+			);
+			path = MYLoadingView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,8 +229,10 @@
 				409D27591E3563E300529221 /* MYRefreshHeaderWithIndicator.swift in Sources */,
 				401C58C51E344A22008D5822 /* MYRefreshHeader.swift in Sources */,
 				409D275B1E356A6100529221 /* TableViewController.swift in Sources */,
+				40277C641E38FCFC004EC54A /* MYRefreshHeaderWithLoadingView.swift in Sources */,
 				401C58C41E344A22008D5822 /* MYRefreshComponent.swift in Sources */,
 				401C58C61E344A22008D5822 /* MYRefreshHeaderWithArrowView.swift in Sources */,
+				40277C621E38FC21004EC54A /* MYLoadingView.swift in Sources */,
 				401C58C81E344A22008D5822 /* MYRefreshStyle.swift in Sources */,
 				401C58C91E344A22008D5822 /* UIScrollView+MYRefresh.swift in Sources */,
 			);

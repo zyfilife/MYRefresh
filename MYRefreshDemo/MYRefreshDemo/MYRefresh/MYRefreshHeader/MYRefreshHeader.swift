@@ -103,8 +103,8 @@ class MYRefreshHeader: MYRefreshComponent {
         }
         
         let normalPullingOffsetY = happenOffsetY - self.frame.size.height
-        let customPullingOffsetY = self.customNormalPullingOffsetY < normalPullingOffsetY ? self.customNormalPullingOffsetY: normalPullingOffsetY
-        let pullingPercent =  happenOffsetY - offsetY / self.frame.size.height
+        let customPullingOffsetY = min(self.customNormalPullingOffsetY, normalPullingOffsetY)
+        let pullingPercent = offsetY/customPullingOffsetY
         if scrollView.isDragging {
             self.pullingPercent = pullingPercent
             if self.state == .idle && offsetY < customPullingOffsetY {

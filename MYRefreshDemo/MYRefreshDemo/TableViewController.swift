@@ -9,7 +9,7 @@
 import UIKit
 
 enum MYRefreshHeaderType {
-    case state, indicator, arrowView, lastTime
+    case state, indicator, arrowView, lastTime, loadingView
 }
 
 class TableViewController: UITableViewController {
@@ -35,8 +35,12 @@ class TableViewController: UITableViewController {
                 self.type = .indicator
             case 2:
                 self.type = .arrowView
-            default:
+            case 3:
                 self.type = .lastTime
+            case 4:
+                self.type = .loadingView
+            default:
+                break
             }
         }else {
             switch indexPath.row {
