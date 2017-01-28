@@ -31,6 +31,7 @@ class MYRefreshHeaderWithLoadingView: MYRefreshHeaderWithState {
     
     override func prepare() {
         super.prepare()
+        self.customNormalPullingOffsetY = -60
         self.addSubview(self.loadingView)
     }
     
@@ -50,7 +51,16 @@ class MYRefreshHeaderWithLoadingView: MYRefreshHeaderWithState {
     
     override func scrollViewContentOffsetDidChange(change: [NSKeyValueChangeKey : Any]?) {
         super.scrollViewContentOffsetDidChange(change: change)
-        self.loadingView.anglePer = -self.scrollView.contentOffset.y/self.refreshHeaderHeight
+        if self.state == .refreshing {
+            self.loadingView.anglePer = 1
+            return
+        }
+        if self.scrollView.contentOffset.y > -30 {
+            self.loadingView.anglePer = 0.0001
+        }else {
+            self.loadingView.anglePer = -(self.scrollView.contentOffset.y-30)/(-self.customNormalPullingOffsetY+30)
+        }
+//        self.loadingView.anglePer = -self.scrollView.contentOffset.y/self.refreshHeaderHeight
     }
 
 }
